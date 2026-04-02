@@ -30,37 +30,101 @@ import java.awt.*;
 import javax.swing.plaf.metal.*;
 import javax.swing.plaf.*;
 
-
 public class actionlisteners {
-    public void createactionlisteners(){
+    public static OntroSYS_WEBTEST web = new OntroSYS_WEBTEST();
+    private boolean felul = false;
+    private AdminPanel adminp;
+    public void createactionlisteners() {
         FileIO write_language = new FileIO();
 
         // menüsor gombok
         menubar.language.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 language_change lang = new language_change();
                 lang.changelanguage();
 
             }
         });
 
-
         menubar.Terminal.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
 
                 Terminal asd = new Terminal();
                 asd.term();
             }
         });
 
+        menubar.LAN.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lanconnection LAN = new lanconnection();
+                LAN.LANconnect();
+            }
+        });
 
-        //egyhangú görgetés bal oldal
+        //adatbázis kezelő
+        
+        
+        
+        
 
 
 
-            AdjustmentListener syncScroll1 = new AdjustmentListener() {
+    menubar.DBeditor.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        
+        // ha még nincs létrehozva, most hozzuk létre
+        if (adminp == null) {
+            adminp = new AdminPanel();
+            Gvar.gbc.gridx = 0;
+            Gvar.gbc.gridy = 3;
+            Gvar.gbc.gridwidth = 5;
+            Gvar.gbc.gridheight = 1;
+            Gvar.gbc.weightx = 0;
+            Gvar.gbc.weighty = 1;
+            Gvar.gbc.fill = GridBagConstraints.BOTH;
+        }
+
+        if (!felul) {
+            
+            Gvar.frame.add(adminp, Gvar.gbc);
+            adminp.setVisible(true);
+
+            Gvar.namescrol1.setVisible(false);
+            Gvar.extensionscrol1.setVisible(false);
+            Gvar.lastmodscrol1.setVisible(false);
+            Gvar.sizescrol1.setVisible(false);
+
+            felul = true;
+
+        } else {
+            // eltüntetés
+            adminp.setVisible(false);
+            Gvar.frame.remove(adminp);
+
+            Gvar.namescrol1.setVisible(true);
+            Gvar.extensionscrol1.setVisible(true);
+            Gvar.lastmodscrol1.setVisible(true);
+            Gvar.sizescrol1.setVisible(true);
+
+            felul = false;
+        }
+
+        Gvar.frame.revalidate();
+        Gvar.frame.repaint();
+    }
+});
+
+
+
+
+        // egyhangú görgetés bal oldal
+
+        AdjustmentListener syncScroll1 = new AdjustmentListener() {
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 JScrollBar source = (JScrollBar) e.getSource();
@@ -84,11 +148,9 @@ public class actionlisteners {
         Gvar.lastmodscrol1.getVerticalScrollBar().addAdjustmentListener(syncScroll1);
         Gvar.sizescrol1.getVerticalScrollBar().addAdjustmentListener(syncScroll1);
 
+        // jobb oldal
 
-        //jobb oldal
-
-
-    AdjustmentListener syncScroll2 = new AdjustmentListener() {
+        AdjustmentListener syncScroll2 = new AdjustmentListener() {
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 JScrollBar source = (JScrollBar) e.getSource();
@@ -111,21 +173,11 @@ public class actionlisteners {
         Gvar.extensionscrol2.getVerticalScrollBar().addAdjustmentListener(syncScroll2);
         Gvar.lastmodscrol2.getVerticalScrollBar().addAdjustmentListener(syncScroll2);
         Gvar.sizescrol2.getVerticalScrollBar().addAdjustmentListener(syncScroll2);
-    
 
+        // kijelölés össz helyen bal oldal
 
-  
-
-
-
-
-
-
-    //kijelölés össz helyen bal oldal
-    
-
-    ListSelectionListener listener1 = new ListSelectionListener() {
-        @Override
+        ListSelectionListener listener1 = new ListSelectionListener() {
+            @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     JList<String> source = (JList<String>) e.getSource();
@@ -157,15 +209,11 @@ public class actionlisteners {
         Gvar.extensionlist1.addListSelectionListener(listener1);
         Gvar.lastmodlist1.addListSelectionListener(listener1);
         Gvar.sizelist1.addListSelectionListener(listener1);
-    
-    
-    
 
-        //jobb oldal
+        // jobb oldal
 
-
-            ListSelectionListener listener2 = new ListSelectionListener() {
-        @Override
+        ListSelectionListener listener2 = new ListSelectionListener() {
+            @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     JList<String> source = (JList<String>) e.getSource();
@@ -198,18 +246,11 @@ public class actionlisteners {
         Gvar.lastmodlist2.addListSelectionListener(listener2);
         Gvar.sizelist2.addListSelectionListener(listener2);
 
-
-
-
-
-
-
-
-        //fájl adat sor gombok
+        // fájl adat sor gombok
 
         Gvar.name1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dataprocess data = new dataprocess();
                 data.sortbynameleft();
 
@@ -218,7 +259,7 @@ public class actionlisteners {
 
         Gvar.extension1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dataprocess data = new dataprocess();
                 data.sortByExtensionLeft();
 
@@ -227,7 +268,7 @@ public class actionlisteners {
 
         Gvar.lastmod1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dataprocess data = new dataprocess();
                 data.sortByLastModifiedLeft();
 
@@ -236,19 +277,18 @@ public class actionlisteners {
 
         Gvar.size1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dataprocess data = new dataprocess();
                 data.sortBySizeLeft();
 
             }
         });
 
-
         // jobb oldal
-        
+
         Gvar.name2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dataprocess data = new dataprocess();
                 data.sortbynameright();
 
@@ -257,7 +297,7 @@ public class actionlisteners {
 
         Gvar.extension2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dataprocess data = new dataprocess();
                 data.sortByExtensionRight();
 
@@ -266,7 +306,7 @@ public class actionlisteners {
 
         Gvar.lastmod2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dataprocess data = new dataprocess();
                 data.sortByLastModifiedRight();
 
@@ -275,55 +315,87 @@ public class actionlisteners {
 
         Gvar.size2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 dataprocess data = new dataprocess();
                 data.sortBySizeRight();
 
             }
         });
-    
-        //bal oldal dupla kattintás
+
+        // web gombok és fájlkezelő
+        web.webengine();
+        Gvar.gbc.gridx = 5;
+        Gvar.gbc.gridy = 3;
+        Gvar.gbc.gridwidth = 5;
+        Gvar.gbc.gridheight = 1;
+        Gvar.gbc.weightx = 0;
+        Gvar.gbc.weighty = 1;
+        Gvar.gbc.fill = GridBagConstraints.BOTH;
+        Gvar.frame.add(web.frame, Gvar.gbc);
+        Gvar.WEBTEST.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                web.buildTopBar();
+                Gvar.namescrol2.setVisible(false);
+                Gvar.extensionscrol2.setVisible(false);
+                Gvar.lastmodscrol2.setVisible(false);
+                Gvar.sizescrol2.setVisible(false);
+                web.frame.setVisible(true);
+                Gvar.frame.revalidate();
+                Gvar.frame.repaint();
+            }
+        });
+
+        Gvar.Filemanager.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Gvar.namescrol2.setVisible(true);
+                Gvar.extensionscrol2.setVisible(true);
+                Gvar.lastmodscrol2.setVisible(true);
+                Gvar.sizescrol2.setVisible(true);
+
+                web.frame.setVisible(false);
+                Gvar.frame.revalidate();
+                Gvar.frame.repaint();
+            }
+        });
+        // bal oldal dupla kattintás
         Gvar.namelist1.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    if (e.getClickCount() == 2) {
-                        int index = Gvar.namelist1.locationToIndex(e.getPoint());
-                        String selectedItem = Gvar.leftdatastructureraw.get(index);
-                        Path path = Paths.get(selectedItem);
-                        if (Files.isDirectory(path)) {
-                            dataprocess data = new dataprocess();
-                            Gvar.pathleft = selectedItem;
-                            data.reloadleftsidestucture();
-                        }
-                        else if (selectedItem.toLowerCase().endsWith(".anb_language")) {
-                            System.out.println("siker"); 
-                            Gvar.nyelv = selectedItem;
-                            write_language.rewrite_to_end("data.anb_syst", selectedItem);
-                            Gvar.frame.revalidate();
-                            Gvar.frame.repaint();
-                            Gvar.pathleft = language_change.old_position;
-                        }
-                        else if (selectedItem.toLowerCase().endsWith(".txt")) {
-                            TextEditorv2 text = new TextEditorv2();
-                            text.TextEdit(selectedItem);
-                        }
-                        else{
-                            File file = new File(selectedItem);
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int index = Gvar.namelist1.locationToIndex(e.getPoint());
+                    String selectedItem = Gvar.leftdatastructureraw.get(index);
+                    Path path = Paths.get(selectedItem);
+                    if (Files.isDirectory(path)) {
+                        dataprocess data = new dataprocess();
+                        Gvar.pathleft = selectedItem;
+                        data.reloadleftsidestucture();
+                    } else if (selectedItem.toLowerCase().endsWith(".anb_language")) {
+                        System.out.println("siker");
+                        Gvar.nyelv = selectedItem;
+                        write_language.rewrite_to_end("./src/main/java/data.anb_syst", selectedItem);
+                        Gvar.frame.revalidate();
+                        Gvar.frame.repaint();
+                        Gvar.pathleft = language_change.old_position;
+                    } else if (selectedItem.toLowerCase().endsWith(".txt")) {
+                        TextEditorv2 text = new TextEditorv2();
+                        text.TextEdit(selectedItem);
+                    } else {
+                        File file = new File(selectedItem);
 
-                            if (Desktop.isDesktopSupported()) {
-                                try {
-                                    Desktop.getDesktop().open(file); // opens with default program
-                                } catch (IOException x) {
-                                    x.printStackTrace();
-                                }
+                        if (Desktop.isDesktopSupported()) {
+                            try {
+                                Desktop.getDesktop().open(file); // opens with default program
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-
-                            
-                            
                         }
 
                     }
+
                 }
-            });
+            }
+        });
         Gvar.extensionlist1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -334,38 +406,33 @@ public class actionlisteners {
                         dataprocess data = new dataprocess();
                         Gvar.pathleft = selectedItem;
                         data.reloadleftsidestucture();
-                        }
-                        else if (selectedItem.toLowerCase().endsWith(".anb_language")) {
-                            System.out.println("siker"); 
-                            Gvar.nyelv = selectedItem;
-                            write_language.rewrite_to_end("data.anb_syst", selectedItem);
-                            Gvar.frame.revalidate();
-                         Gvar.frame.repaint();
-                         Gvar.pathleft = language_change.old_position;
-                        }
-                        else if (selectedItem.toLowerCase().endsWith(".txt")) {
-                            TextEditorv2 text = new TextEditorv2();
-                            text.TextEdit(selectedItem);
-                        }
-                        else{
-                            File file = new File(selectedItem);
+                    } else if (selectedItem.toLowerCase().endsWith(".anb_language")) {
+                        System.out.println("siker");
+                        Gvar.nyelv = selectedItem;
+                        write_language.rewrite_to_end("./src/main/java/data.anb_syst", selectedItem);
+                        Gvar.frame.revalidate();
+                        Gvar.frame.repaint();
+                        Gvar.pathleft = language_change.old_position;
+                    } else if (selectedItem.toLowerCase().endsWith(".txt")) {
+                        TextEditorv2 text = new TextEditorv2();
+                        text.TextEdit(selectedItem);
+                    } else {
+                        File file = new File(selectedItem);
 
-                            if (Desktop.isDesktopSupported()) {
-                                try {
-                                    Desktop.getDesktop().open(file); // opens with default program
-                                } catch (IOException x) {
-                                    x.printStackTrace();
-                                }
+                        if (Desktop.isDesktopSupported()) {
+                            try {
+                                Desktop.getDesktop().open(file); // opens with default program
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-
-                            
-                            
                         }
+
+                    }
                 }
             }
         });
 
-            Gvar.lastmodlist1.addMouseListener(new MouseAdapter() {
+        Gvar.lastmodlist1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int index = Gvar.lastmodlist1.locationToIndex(e.getPoint());
@@ -375,38 +442,33 @@ public class actionlisteners {
                         dataprocess data = new dataprocess();
                         Gvar.pathleft = selectedItem;
                         data.reloadleftsidestucture();
-                    }
-                    else if (selectedItem.toLowerCase().endsWith(".anb_language")) {     
-                        System.out.println("siker"); 
+                    } else if (selectedItem.toLowerCase().endsWith(".anb_language")) {
+                        System.out.println("siker");
                         Gvar.nyelv = selectedItem;
-                        write_language.rewrite_to_end("data.anb_syst", selectedItem);
+                        write_language.rewrite_to_end("./src/main/java/data.anb_syst", selectedItem);
                         Gvar.frame.revalidate();
-                         Gvar.frame.repaint();
-                         Gvar.pathleft = language_change.old_position;
-                        }
-                        else if (selectedItem.toLowerCase().endsWith(".txt")) {
-                            TextEditorv2 text = new TextEditorv2();
-                            text.TextEdit(selectedItem);
-                        }
-                        else{
-                            File file = new File(selectedItem);
+                        Gvar.frame.repaint();
+                        Gvar.pathleft = language_change.old_position;
+                    } else if (selectedItem.toLowerCase().endsWith(".txt")) {
+                        TextEditorv2 text = new TextEditorv2();
+                        text.TextEdit(selectedItem);
+                    } else {
+                        File file = new File(selectedItem);
 
-                            if (Desktop.isDesktopSupported()) {
-                                try {
-                                    Desktop.getDesktop().open(file); // opens with default program
-                                } catch (IOException x) {
-                                    x.printStackTrace();
-                                }
+                        if (Desktop.isDesktopSupported()) {
+                            try {
+                                Desktop.getDesktop().open(file); // opens with default program
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-
-                            
-                            
                         }
+
+                    }
                 }
             }
         });
 
-            Gvar.sizelist1.addMouseListener(new MouseAdapter() {
+        Gvar.sizelist1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int index = Gvar.sizelist1.locationToIndex(e.getPoint());
@@ -416,44 +478,35 @@ public class actionlisteners {
                         dataprocess data = new dataprocess();
                         Gvar.pathleft = selectedItem;
                         data.reloadleftsidestucture();
-                    }
-                    else if (selectedItem.toLowerCase().endsWith(".anb_language")) {   
-                        System.out.println("siker"); 
+                    } else if (selectedItem.toLowerCase().endsWith(".anb_language")) {
+                        System.out.println("siker");
                         Gvar.nyelv = selectedItem;
-                        write_language.rewrite_to_end("data.anb_syst", selectedItem);
+                        write_language.rewrite_to_end("./src/main/java/data.anb_syst", selectedItem);
                         Gvar.frame.revalidate();
-                         Gvar.frame.repaint();
-                         Gvar.pathleft = language_change.old_position;
-                        }
-                        else if (selectedItem.toLowerCase().endsWith(".txt")) {
-                            TextEditorv2 text = new TextEditorv2();
-                            text.TextEdit(selectedItem);
-                        }
-                        else{
-                            File file = new File(selectedItem);
+                        Gvar.frame.repaint();
+                        Gvar.pathleft = language_change.old_position;
+                    } else if (selectedItem.toLowerCase().endsWith(".txt")) {
+                        TextEditorv2 text = new TextEditorv2();
+                        text.TextEdit(selectedItem);
+                    } else {
+                        File file = new File(selectedItem);
 
-                            if (Desktop.isDesktopSupported()) {
-                                try {
-                                    Desktop.getDesktop().open(file); // opens with default program
-                                } catch (IOException x) {
-                                    x.printStackTrace();
-                                }
+                        if (Desktop.isDesktopSupported()) {
+                            try {
+                                Desktop.getDesktop().open(file); // opens with default program
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-
-                            
-                            
                         }
+
+                    }
                 }
             }
         });
 
-
-
         // jobb oldal
 
-
-
-            Gvar.namelist2.addMouseListener(new MouseAdapter() {
+        Gvar.namelist2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int index = Gvar.namelist2.locationToIndex(e.getPoint());
@@ -463,25 +516,21 @@ public class actionlisteners {
                         dataprocess data = new dataprocess();
                         Gvar.pathright = selectedItem;
                         data.reloadrightsidestucture();
-                    }
-                    else if (selectedItem.toLowerCase().endsWith(".txt")) {
-                            TextEditorv2 text = new TextEditorv2();
-                            text.TextEdit(selectedItem);
-                        }
-                    else{
-                            File file = new File(selectedItem);
+                    } else if (selectedItem.toLowerCase().endsWith(".txt")) {
+                        TextEditorv2 text = new TextEditorv2();
+                        text.TextEdit(selectedItem);
+                    } else {
+                        File file = new File(selectedItem);
 
-                            if (Desktop.isDesktopSupported()) {
-                                try {
-                                    Desktop.getDesktop().open(file); // opens with default program
-                                } catch (IOException x) {
-                                    x.printStackTrace();
-                                }
+                        if (Desktop.isDesktopSupported()) {
+                            try {
+                                Desktop.getDesktop().open(file); // opens with default program
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-
-                            
-                            
                         }
+
+                    }
                 }
             }
         });
@@ -495,30 +544,26 @@ public class actionlisteners {
                         dataprocess data = new dataprocess();
                         Gvar.pathright = selectedItem;
                         data.reloadrightsidestucture();
-                    }
-                    else if (selectedItem.toLowerCase().endsWith(".txt")) {
-                            TextEditorv2 text = new TextEditorv2();
-                            text.TextEdit(selectedItem);
-                        }
-                    else{
-                            File file = new File(selectedItem);
+                    } else if (selectedItem.toLowerCase().endsWith(".txt")) {
+                        TextEditorv2 text = new TextEditorv2();
+                        text.TextEdit(selectedItem);
+                    } else {
+                        File file = new File(selectedItem);
 
-                            if (Desktop.isDesktopSupported()) {
-                                try {
-                                    Desktop.getDesktop().open(file); // opens with default program
-                                } catch (IOException x) {
-                                    x.printStackTrace();
-                                }
+                        if (Desktop.isDesktopSupported()) {
+                            try {
+                                Desktop.getDesktop().open(file); // opens with default program
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-
-                            
-                            
                         }
+
+                    }
                 }
             }
         });
 
-            Gvar.lastmodlist2.addMouseListener(new MouseAdapter() {
+        Gvar.lastmodlist2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int index = Gvar.lastmodlist2.locationToIndex(e.getPoint());
@@ -528,30 +573,26 @@ public class actionlisteners {
                         dataprocess data = new dataprocess();
                         Gvar.pathright = selectedItem;
                         data.reloadrightsidestucture();
-                    }
-                    else if (selectedItem.toLowerCase().endsWith(".txt")) {
-                            TextEditorv2 text = new TextEditorv2();
-                            text.TextEdit(selectedItem);
-                        }
-                    else{
-                            File file = new File(selectedItem);
+                    } else if (selectedItem.toLowerCase().endsWith(".txt")) {
+                        TextEditorv2 text = new TextEditorv2();
+                        text.TextEdit(selectedItem);
+                    } else {
+                        File file = new File(selectedItem);
 
-                            if (Desktop.isDesktopSupported()) {
-                                try {
-                                    Desktop.getDesktop().open(file); // opens with default program
-                                } catch (IOException x) {
-                                    x.printStackTrace();
-                                }
+                        if (Desktop.isDesktopSupported()) {
+                            try {
+                                Desktop.getDesktop().open(file); // opens with default program
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-
-                            
-                            
                         }
+
+                    }
                 }
             }
         });
 
-            Gvar.sizelist2.addMouseListener(new MouseAdapter() {
+        Gvar.sizelist2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int index = Gvar.sizelist2.locationToIndex(e.getPoint());
@@ -561,71 +602,59 @@ public class actionlisteners {
                         dataprocess data = new dataprocess();
                         Gvar.pathright = selectedItem;
                         data.reloadrightsidestucture();
-                    }
-                    else if (selectedItem.toLowerCase().endsWith(".txt")) {
-                            TextEditorv2 text = new TextEditorv2();
-                            text.TextEdit(selectedItem);
-                        }
-                    else{
-                            File file = new File(selectedItem);
+                    } else if (selectedItem.toLowerCase().endsWith(".txt")) {
+                        TextEditorv2 text = new TextEditorv2();
+                        text.TextEdit(selectedItem);
+                    } else {
+                        File file = new File(selectedItem);
 
-                            if (Desktop.isDesktopSupported()) {
-                                try {
-                                    Desktop.getDesktop().open(file); // opens with default program
-                                } catch (IOException x) {
-                                    x.printStackTrace();
-                                }
+                        if (Desktop.isDesktopSupported()) {
+                            try {
+                                Desktop.getDesktop().open(file); // opens with default program
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-
-                            
-                            
                         }
+
+                    }
                 }
             }
         });
 
-
-
         // vissza gomb müködése
-        //bal
-     
+        // bal
+
         Gvar.back1.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-             
-            
+            public void actionPerformed(ActionEvent e) {
 
-            File current = new File(Gvar.pathleft);
-            File parent = current.getParentFile();
-            if (parent != null) {
-                Gvar.pathleft = parent.getAbsolutePath();
-            }
-            dataprocess data = new dataprocess();
-            data.reloadleftsidestucture();
+                File current = new File(Gvar.pathleft);
+                File parent = current.getParentFile();
+                if (parent != null) {
+                    Gvar.pathleft = parent.getAbsolutePath();
+                }
+                dataprocess data = new dataprocess();
+                data.reloadleftsidestucture();
             }
         });
 
+        // jobb
 
-        //jobb
-
-            Gvar.back2.addActionListener(new ActionListener() {
+        Gvar.back2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
-             
-            
+            public void actionPerformed(ActionEvent e) {
 
-            File current = new File(Gvar.pathright);
-            File parent = current.getParentFile();
-            if (parent != null) {
-                Gvar.pathright = parent.getAbsolutePath();
-            }
-            dataprocess data = new dataprocess();
-            data.reloadrightsidestucture();
+                File current = new File(Gvar.pathright);
+                File parent = current.getParentFile();
+                if (parent != null) {
+                    Gvar.pathright = parent.getAbsolutePath();
+                }
+                dataprocess data = new dataprocess();
+                data.reloadrightsidestucture();
             }
         });
 
-
-        //meghajtó kiválasztása
+        // meghajtó kiválasztása
         Gvar.leftdrive.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -635,7 +664,7 @@ public class actionlisteners {
                 data.reloadleftsidestucture();
             }
         });
-        //jobb meghajtó
+        // jobb meghajtó
         Gvar.rightdrive.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -645,10 +674,6 @@ public class actionlisteners {
                 data.reloadrightsidestucture();
             }
         });
-        
-
-
-
 
         menubar.Metal.addActionListener(new ActionListener() {
             @Override
@@ -687,22 +712,6 @@ public class actionlisteners {
             }
         });
 
-
-        
-
-
-
-
-
-
-
-
-
     }
 
-    
-
-
-
 }
-

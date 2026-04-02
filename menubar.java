@@ -13,6 +13,7 @@ public class menubar {
     public static JMenuItem System;
     public static JMenuItem Nimbus;
     public static JMenuItem Motif;
+    public static JMenuItem DBeditor;
     public void menubaritems(){
         //beállitások menüpont
         FileIO nyelvinput = new FileIO();
@@ -26,11 +27,13 @@ public class menubar {
         item = nyelvinput.ReadLine(Gvar.nyelv, 2);
 
         language = new JMenuItem(item);
-
+        //adatbázis kezelő
+        item = nyelvinput.ReadLine(Gvar.nyelv, 24);
+        DBeditor = new JMenuItem(item);
         //beállitásokhoz alpontok hozzáadása
         settings.add(Terminal);
         settings.add(language);
-        
+        settings.add(DBeditor);
 
 
         //file menüsor

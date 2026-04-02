@@ -8,7 +8,7 @@ public class language_change {
         dataprocess data = new dataprocess();
         old_position = Gvar.pathleft;
 
-        Gvar.pathleft = "./SystemFiles";
+        Gvar.pathleft = "./src/main/java/SystemFiles";
         data.reloadleftsidestucture();
 
     }

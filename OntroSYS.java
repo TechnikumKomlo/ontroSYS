@@ -8,12 +8,12 @@ public class OntroSYS {
         FileIO lang = new FileIO();
 
         //létezik a path
-        Gvar.nyelv = lang.ReadLine("data.anb_syst", 0);
+        Gvar.nyelv = lang.ReadLine("./src/main/java/data.anb_syst", 0);
         File f = new File(Gvar.nyelv);
 
         //ha nem létezik valami folytán akkor alap nyelv beállitása
         if (!f.exists()) {
-            Gvar.nyelv = "./SystemFiles/english.anb_language";
+            Gvar.nyelv = "./src/main/java/SystemFiles/english.anb_language";
         }
 
         screen scr = new screen();
@@ -39,6 +39,8 @@ public class OntroSYS {
 
 
     public static void startupdataload(){
+        //kezdőkinézet betöltése
+        
         dataprocess startup = new dataprocess();
         startup.updatedrive();
         drive drive = new drive();
@@ -55,7 +57,10 @@ public class OntroSYS {
         Gvar.leftdatastructureraw =  olvas.filebeolvasas(Gvar.pathleft);
         startup.loadleftsidestucture();
         startup.loadrightsidestucture();
-        
+
+        lookandfeel look = new lookandfeel();
+        look.loadprevious();
+    
     }
 }
 
