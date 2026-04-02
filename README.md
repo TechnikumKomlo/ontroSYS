@@ -34,6 +34,8 @@ Amennyiben a forráskódból szeretné építeni vagy futtatni a projektet, az a
 
 **Futtatás folyamata**
 
+Csakis a v2.x.x verzióval ellátott projektek.
+
 Nyissa meg a projekt gyökérkönyvtárát egy terminálban.
 
 *Futtassa az alábbi parancsot az alkalmazás indításához:*
