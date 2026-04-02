@@ -22,7 +22,7 @@ Amennyiben a forráskódból szeretné építeni vagy futtatni a projektet, az a
 
 **Előfeltételek**
 
-*os: Windows 10/11 ; Ubuntu lts 22.04.5>*
+*os: Windows 10/11 ; Ubuntu LTS 22.04.5>*
 
 *IDE: Visual Studio Code (ajánlott)*
 
