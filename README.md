@@ -4,9 +4,11 @@
 Üdvözöljük az OntroSYS projekt oldalán! Ez a szoftver egy robusztus megoldást kínál fájlkezelési feladatok ellátására.
 
 # Letöltés
-A projekt méretéből adódóan bizonyos bináris állományok meghaladják a GitHub 25 MB-os fájlméret-korlátját. A teljes, minden erőforrást tartalmazó verzió az alábbi linken érhető el:
 
-**OntroSYS Teljes Verzió Letöltése**(https://1drv.ms/f/c/952a6ce2369afcd1/IgAdlztNMyArTIufaf--vORDAadEVVAXulLKiC3Kq3DzAzo?e=CK7HyX)
+1.  **Hivatalos Weboldal (Ajánlott):** A leggyorsabb és legkényelmesebb letöltéshez látogasson el a **[akos0328.webredirect.org](http://akos0328.webredirect.org)** oldalra.
+2.  **GitHub Releases:** Amennyiben a weboldal nem elérhető, a stabil, tesztelt változatokat a jobb oldali [Releases](https://github.com) menüpont alatt, a legfrissebb (Latest) jelölésű verziónál találja meg.
+3.  **Teljes Archívum:** Mivel bizonyos bináris állományok meghaladják a GitHub 25 MB-os korlátját, a minden erőforrást tartalmazó teljes verzió az alábbi külső tárhelyről is elérhető:
+    *   **[OntroSYS Teljes Verzió (OneDrive)](https://1drv.ms/f/c/952a6ce2369afcd1/IgAdlztNMyArTIufaf--vORDAadEVVAXulLKiC3Kq3DzAzo?e=CK7HyX)**
 
 # Fontos figyelmeztetés és felelősségkorlátozás
 A forráskódban található fejlesztői (dev) verzió nem tekinthető stabilnak.
