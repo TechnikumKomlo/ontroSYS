@@ -1,0 +1,725 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #202020;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+    overflow-y: auto;
+}
+.background{
+    background: #e4e4e4;
+}
+
+
+.blur-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../kepek/image1.png');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    z-index: -1;
+    animation: kepek 20s infinite;
+}
+
+.felsocucc, .felso-cucc {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 12px 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    min-width: 500px;
+    transition: all 0.3s ease;
+}
+
+.felsocucc:hover, .felso-cucc:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.nav-center {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-right {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav-link:hover::before,
+.nav-link.nav-active::before {
+    opacity: 1;
+}
+
+.nav-link:hover,
+.nav-link.nav-active {
+    color: white;
+    transform: scale(1.05);
+}
+
+.mobile-menu-toggle, .mobil-menu-gomb {
+    display: none;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover, .mobil-menu-gomb:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.profil-container, .profil-kontener {
+    position: relative;
+    margin-left: 8px;
+}
+
+.profil-kep {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.profil-kep:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.profil-kep i {
+    color: white;
+    font-size: 18px;
+}
+
+.profil-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.profil-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profil-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.profil-menu-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.profil-menu-item i {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.tartalom {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 20px 50px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    min-height: auto;
+}
+
+.frissites-naplo {
+    width: 100%;
+}
+
+.frissites-naplo h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.frissites-bejegyzes {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.frissites-bejegyzes:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.frissites-bejegyzes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 2px 0 0 2px;
+}
+
+.frissites-datum {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.frissites-tartalom h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.frissites-tartalom p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    padding-left: 16px;
+    position: relative;
+}
+
+.frissites-tartalom p::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.komment-szekcio {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.komment-forma {
+    margin-bottom: 20px;
+}
+
+.komment-mezo {
+    width: 100%;
+    min-height: 60px;
+    padding: 10px 14px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.komment-mezo:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.komment-mezo::placeholder {
+    color: #999;
+}
+
+.komment-gomb {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    margin-top: 8px;
+}
+
+.komment-gomb:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.komment-gomb:active {
+    transform: translateY(0);
+}
+
+.komment-lista {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.nincs-komment {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.komment {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.komment:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.komment-fejlec {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.komment-szerzo {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 0.9rem;
+}
+
+.komment-ido {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.komment-szoveg {
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+.komment-torles {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.komment-torles:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+.sotet-mod, .inverted-theme {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.sotet-mod img, .sotet-mod video, .sotet-mod canvas, .sotet-mod iframe,
+.inverted-theme img, .inverted-theme video, .inverted-theme canvas, .inverted-theme iframe {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.sotet-mod .blur-background,
+.inverted-theme .blur-background {
+    filter: invert(1) hue-rotate(180deg) blur(5px);
+}
+
+.inverted-theme .felsocucc, .inverted-theme .felso-cucc {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.inverted-theme .nav-link {
+    color: #333 !important;
+}
+
+.inverted-theme .nav-link:hover,
+.inverted-theme .nav-link.nav-active {
+    color: white !important;
+}
+
+.inverted-theme .mobile-menu-toggle, .inverted-theme .mobil-menu-gomb {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    color: white !important;
+}
+
+.inverted-theme .profil-kep {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+}
+
+.inverted-theme .profil-menu {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.inverted-theme .profil-menu-item {
+    color: #333 !important;
+}
+
+.inverted-theme .profil-menu-item:hover {
+    background: rgba(102, 126, 234, 0.1) !important;
+    color: #667eea !important;
+}
+
+@media (max-width: 1024px) {
+    .felsocucc, .felso-cucc {
+        width: 90%;
+        max-width: 700px;
+        padding: 10px 20px;
+    }
+    
+    .tartalom {
+        padding: 100px 15px 50px;
+    }
+    
+    .content {
+        padding: 30px 25px;
+    }
+    
+    .frissites-naplo h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle, .mobil-menu-gomb {
+        display: block;
+    }
+    
+    .felsocucc, .felso-cucc {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 20px;
+        width: 95%;
+        max-width: none;
+        border-radius: 12px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .nav-center, .nav-right {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+        order: 3;
+    }
+    
+    .nav-center.active, .nav-right.active {
+        display: flex;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+        text-align: center;
+        width: 100%;
+        border-radius: 8px;
+    }
+    
+    .tartalom {
+        padding: 80px 10px 40px;
+    }
+    
+    .content {
+        padding: 25px 20px;
+        border-radius: 20px;
+    }
+    
+    .frissites-naplo h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .frissites-bejegyzes {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .frissites-tartalom h3 {
+        font-size: 1.2rem;
+    }
+    
+    .frissites-tartalom p {
+        font-size: 0.9rem;
+        padding-left: 16px;
+    }
+    
+    .komment-mezo {
+        min-height: 60px;
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .komment-gomb {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .felsocucc, .felso-cucc {
+        top: 8px;
+        padding: 10px 15px;
+        width: 98%;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+    
+    .tartalom {
+        padding: 70px 8px 30px;
+    }
+    
+    .content {
+        padding: 20px 15px;
+        border-radius: 16px;
+    }
+    
+    .frissites-naplo h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+    
+    .frissites-bejegyzes {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    
+    .frissites-tartalom h3 {
+        font-size: 1.1rem;
+    }
+    
+    .frissites-tartalom p {
+        font-size: 0.85rem;
+        padding-left: 12px;
+        margin-bottom: 6px;
+    }
+    
+    .komment-szekcio {
+        margin-top: 16px;
+        padding-top: 16px;
+    }
+    
+    .komment-mezo {
+        min-height: 50px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .komment-gomb {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .komment {
+        padding: 12px;
+    }
+    
+    .komment-fejlec {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
+
+@media (max-width: 360px) {
+    .felsocucc, .felso-cucc {
+        padding: 8px 12px;
+    }
+    
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    .tartalom {
+        padding: 60px 5px 25px;
+    }
+    
+    .content {
+        padding: 15px 12px;
+    }
+    
+    .frissites-naplo h2 {
+        font-size: 1.3rem;
+    }
+    
+    .frissites-bejegyzes {
+        padding: 12px;
+    }
+    
+    .frissites-tartalom h3 {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .felsocucc, .felso-cucc {
+        width: 800px;
+        padding: 14px 40px;
+    }
+    
+    .tartalom {
+        padding: 120px 20px 60px;
+    }
+    
+    .content {
+        padding: 50px 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .frissites-naplo h2 {
+        font-size: 3rem;
+    }
+    
+    .frissites-tartalom h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .felsocucc, .felso-cucc {
+        width: 1000px;
+        padding: 16px 50px;
+    }
+    
+    .tartalom {
+        padding: 140px 20px 80px;
+    }
+    
+    .content {
+        padding: 60px 50px;
+        max-width: 1600px;
+    }
+    
+    .frissites-naplo h2 {
+        font-size: 3.5rem;
+    }
+    
+    .frissites-tartalom h3 {
+        font-size: 1.8rem;
+    }
+}

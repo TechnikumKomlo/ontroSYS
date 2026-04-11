@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+    <link rel="stylesheet" href="../css/css2.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+      .nav-link {
+        font-size: 0.9rem ;
+        padding: 10px 16px ;
+      }
+    </style>
+</head>
+<body>
+    <div class="blur-background"></div>
+    
+    <nav class="felsocucc">
+    <div class="nav-center">
+        <a href="Fooldal.html" class="nav-link">Főoldal</a>
+        <a href="Frissitések.html" class="nav-link">Frissítések</a>
+        <a href="rolunk.html" class="nav-link">Rólunk</a>
+    </div>
+    <div class="nav-right">
+        <div class="profil-container">
+            <div class="profil-kep" onclick="toggleProfilMenu()">
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="profil-menu" id="profilMenu">
+                <a href="#" class="profil-menu-item">
+                    <i class='bx bx-user-circle'></i>
+                    Profil
+                </a>
+                <a href="Beallitas.html" class="profil-menu-item">
+                    <i class='bx bx-cog'></i>
+                    Beállítások
+                </a>
+                <a href="regisztracio1.html" class="profil-menu-item">
+                    <i class='bx bx-user-plus'></i>
+                    Regisztráció
+                </a>
+                <a href="web.html" class="profil-menu-item">
+                    <i class='bx bx-log-in'></i>
+                    Bejelentkezés
+                </a>
+                <a href="rolunk.html" class="profil-menu-item">
+                    <i class='bx bx-info-circle'></i>
+                    Rólunk
+                </a>
+                <a href="logout.html" class="profil-menu-item">
+                    <i class='bx bx-log-out'></i>
+                    Kijelentkezés
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <form id="registrationForm">
+        <h1>Regisztráció</h1>
+        
+        <div class="form-group">
+            <label for="username" class="form-label">Felhasználónév</label>
+            <div class="input-wrapper">
+                <i class='bx bxs-user input-icon'></i>
+                <input type="text" id="username" name="username" class="form-input" required placeholder="Add meg a felhasználónevet">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="password" class="form-label">Jelszó</label>
+            <div class="input-wrapper">
+                <i class='bx bx-lock input-icon'></i>
+                <input type="password" id="password" name="password" class="form-input" required placeholder="Add meg a jelszót">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-wrapper">
+                <i class='bx bx-envelope input-icon'></i>
+                <input type="email" id="email" name="email" class="form-input" required placeholder="Add meg az email címet">
+            </div>
+        </div>
+        
+        <div class="form-footer">
+            <button type="submit" class="submit-btn">Regisztráció</button>
+            <button type="button" class="secondary-btn" onclick="window.location.href='web.html';">
+                Már van fiókom? Bejelentkezés
+            </button>
+        </div>
+    </form>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        console.log('Script betöltődött!');
+        
+      
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM betöltődött!');
+            
+            const form = document.getElementById('registrationForm');
+            console.log('Form elem:', form);
+            
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    console.log('Form submit esemény!');
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('username').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value.trim();
+                    
+                    console.log('Regisztrációs adatok:', { username, email, password });
+                    
+                  
+                    if (!username || !email || !password) {
+                        alert('Minden mező kitöltése kötelező!');
+                        return;
+                    }
+                    
+                    if (!email.includes('@') || !email.includes('.')) {
+                        alert('Érvénytelen email formátum!');
+                        return;
+                    }
+                    
+                    if (password.length < 6) {
+                        alert('A jelszónak legalább 6 karakter hosszúnak kell lennie!');
+                        return;
+                    }
+                    
+                    try {
+                        console.log('Indul a users.json betöltése...');
+                    
+                        const response = await fetch('../users.json');
+                        
+                        console.log('Response status:', response.status);
+                        console.log('Response ok:', response.ok);
+                        
+                        if (!response.ok) {
+                            console.error('Hálózati hiba:', response.status, response.statusText);
+                            alert('Hiba történt a regisztráció során. Kérlek, próbáld később!');
+                            return;
+                        }
+                        
+                        const responseText = await response.text();
+                        console.log('Response text:', responseText);
+                        
+                        let users = [];
+                        
+                        if (responseText && responseText.trim() !== '') {
+                            try {
+                                users = JSON.parse(responseText);
+                                console.log('Parsed users:', users);
+                            } catch (parseError) {
+                                console.error('JSON parse hiba:', parseError);
+                                console.error('Kapott válasz:', responseText);
+                            }
+                        }
+                        
+                      
+                        const existingUser = users.find(user => 
+                            user.username === username || user.email === email
+                        );
+                        
+                        console.log('Existing user check:', existingUser);
+                        
+                        if (existingUser) {
+                            alert('A felhasználónév vagy email már regisztrálva van!');
+                            return;
+                        }
+                        
+                      
+                        const newUser = {
+                            id: Date.now(),
+                            username: username,
+                            email: email,
+                            password: password, 
+                            created_at: new Date().toISOString()
+                        };
+                       
+                        console.log('Új felhasználó hozzáadva:', newUser);
+                        console.log('Összes felhasználó:', [...users, newUser]);
+                        
+                        alert('Sikeres regisztráció! Most már bejelentkezhetsz.');
+                        window.location.href = 'web.html';
+                        
+                    } catch (error) {
+                        console.error('Fetch hiba:', error);
+                        alert('Hiba történt a regisztráció során. Kérlek, próbáld később!');
+                    }
+                });
+            } else {
+                console.error('A form nem található!');
+            }
+        });
+
+      
+        function applyTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'auto';
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('inverted-theme');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', applyTheme);
+    </script>
+
+    <style>
+        .inverted-theme {
+            filter: invert(1) hue-rotate(180deg);
+        }
+
+        .inverted-theme img,
+        .inverted-theme video,
+        .inverted-theme canvas,
+        .inverted-theme iframe {
+            filter: invert(1) hue-rotate(180deg);
+        }
+
+        .inverted-theme .blur-background {
+            filter: invert(1) hue-rotate(180deg) blur(5px);
+        }
+    </style>
+         .inverted-theme img,
+.inverted-theme video,
+.inverted-theme canvas,
+.inverted-theme iframe {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.inverted-theme .blur-background {
+    filter: invert(1) hue-rotate(180deg) blur(5px);
+}
+</style>
+</body>
+</html>

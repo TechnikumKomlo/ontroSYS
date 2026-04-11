@@ -1,0 +1,534 @@
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: #0f0f0f;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+    overflow-y: auto;
+}
+.background{
+    background: #e4e4e4;
+}
+.felso-cucc {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 12px 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    min-width: 500px;
+    transition: all 0.3s ease;
+}
+
+.felso-cucc:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.nav-center {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-right {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav-link:hover::before,
+.nav-link.nav-active::before {
+    opacity: 1;
+}
+
+.nav-link:hover,
+.nav-link.nav-active {
+    color: white;
+    transform: scale(1.05);
+}
+
+.mobil-menu-gomb {
+    display: none;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.mobil-menu-gomb:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.profil-kontener {
+    position: relative;
+    margin-left: 8px;
+}
+
+.profil-kep {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.profil-kep:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.profil-kep i {
+    color: white;
+    font-size: 18px;
+}
+
+.profil-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.profil-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profil-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.profil-menu-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.profil-menu-item i {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 20px 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+}
+
+.rolunk {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.focim {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.alcim {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 400;
+    margin: 0 0 40px 0;
+    text-align: center;
+}
+
+.keszitoszekcio {
+    margin-bottom: 60px;
+}
+
+.keszitokartyak {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.keszitokartya {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.keszitokartya:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.keszitoavatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.keszitoavatar i {
+    color: white;
+    font-size: 40px;
+}
+
+.keszitokartya h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 10px 0;
+}
+
+.keszitoszerep {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+    font-weight: 400;
+}
+
+.aszfszekcio {
+    margin-top: 60px;
+}
+
+.aszfleiras {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+    margin: 0 0 30px 0;
+    font-style: italic;
+}
+
+.aszftartalom {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.aszftartalom::-webkit-scrollbar {
+    width: 8px;
+}
+
+.aszftartalom::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.aszftartalom::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: 4px;
+}
+
+.aszftartalom::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.5);
+}
+
+.sotet-mod {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.sotet-mod img, .sotet-mod video, .sotet-mod canvas, .sotet-mod iframe {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.sotet-mod .hatter-kep {
+    filter: invert(1) hue-rotate(180deg) blur(5px);
+}
+
+@media (max-width: 1024px) {
+    .felso-cucc {
+        width: 90%;
+        max-width: 700px;
+        padding: 10px 20px;
+    }
+    
+    .container {
+        padding: 100px 15px 50px;
+    }
+    
+    .rolunk {
+        padding: 30px;
+    }
+    
+    .focim {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobil-menu-gomb {
+        display: block;
+    }
+    
+    .felso-cucc {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 20px;
+        width: 95%;
+        max-width: none;
+        border-radius: 12px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .nav-center, .nav-right {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+        order: 3;
+    }
+    
+    .nav-center.active, .nav-right.active {
+        display: flex;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+        text-align: center;
+        width: 100%;
+        border-radius: 8px;
+    }
+    
+    .container {
+        padding: 80px 10px 40px;
+    }
+    
+    .rolunk {
+        padding: 20px;
+    }
+    
+    .keszitokartyak {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .focim {
+        font-size: 2.2rem;
+        margin-bottom: 16px;
+    }
+    
+    .alcim {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .felso-cucc {
+        top: 8px;
+        padding: 10px 15px;
+        width: 98%;
+    }
+    
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+    
+    .container {
+        padding: 70px 8px 30px;
+    }
+    
+    .rolunk {
+        padding: 15px;
+    }
+    
+    .keszitokartya {
+        padding: 20px;
+    }
+    
+    .keszitoavatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .keszitoavatar i {
+        font-size: 30px;
+    }
+    
+    .focim {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+    
+    .alcim {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .felso-cucc {
+        padding: 8px 12px;
+    }
+    
+    .nav-link {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    .container {
+        padding: 60px 5px 25px;
+    }
+    
+    .rolunk {
+        padding: 10px;
+    }
+    
+    .focim {
+        font-size: 1.6rem;
+    }
+    
+    .alcim {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .felso-cucc {
+        width: 800px;
+        padding: 14px 40px;
+    }
+    
+    .container {
+        padding: 120px 20px 60px;
+    }
+    
+    .rolunk {
+        padding: 50px;
+    }
+    
+    .focim {
+        font-size: 4rem;
+    }
+    
+    .alcim {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .felso-cucc {
+        width: 1000px;
+        padding: 16px 50px;
+    }
+    
+    .container {
+        padding: 140px 20px 80px;
+    }
+    
+    .rolunk {
+        padding: 60px;
+    }
+    
+    .focim {
+        font-size: 4.5rem;
+    }
+    
+    .alcim {
+        font-size: 1.4rem;
+    }
+}

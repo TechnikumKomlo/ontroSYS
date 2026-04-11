@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/css-optimized.css">
+    <link rel="stylesheet" href="../css/frissites.css">
+    <title>Frissítések</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <div class="background">
+<nav class="felsocucc">
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class='bx bx-menu'></i>
+    </button>
+    <div class="nav-center">
+        <a href="Fooldal.html" class="nav-link">Főoldal</a>
+        <a href="Frissitések.html" class="nav-link nav-active">Frissítések</a>
+    </div>
+     <div class="nav-right">
+        <div class="profil-container">
+           <div class="profil-kep" onclick="toggleProfilMenu()">
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="profil-menu" id="profilMenu">
+                <a href="Profil.html" class="profil-menu-item">
+                    <i class='bx bx-user-circle'></i>
+                    Profil
+                </a>
+                <a href="Beallitas.html" class="profil-menu-item">
+                    <i class='bx bx-cog'></i>
+                    Beállítások
+                </a>
+                <a href="regisztracio1.html" class="profil-menu-item" id="registerLink">
+                    <i class='bx bx-user-plus'></i>
+                    Regisztráció
+                </a>
+                <a href="web.html" class="profil-menu-item" id="loginLink">
+                    <i class='bx bx-log-in'></i>
+                    Bejelentkezés
+                </a>
+                <a href="rolunk.html" class="profil-menu-item">
+                    <i class='bx bx-info-circle'></i>
+                    Rólunk
+                </a>
+                <a href="logout.html" class="profil-menu-item" id="logoutLink">
+                    <i class='bx bx-log-out'></i>
+                    Kijelentkezés
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+ <main class="tartalom">
+    <div class="content">
+
+   <div class="frissites-naplo">
+    <h2>Frissítés Napló</h2>
+
+
+    <!-- posztoláshoz ezt másolja fentre -->
+    <div class="frissites-bejegyzes">
+        <div class="frissites-datum">2025.02.15</div>
+        <div class="frissites-tartalom">
+            <h3>v2.0.0 - Major frissítés</h3>
+            <p>• Teljesen újraforgatott felhasználói felület</p>
+            <p>• Fejlesztett teljesítmények</p>
+            <p>• Optimalizált teljesítmény</p>
+            <div class="komment-szekcio">
+                <div class="komment-forma">
+                    <textarea class="komment-mezo" placeholder="Írj egy kommentet..." data-post-id="v2.0.0"></textarea>
+                    <button class="komment-gomb" onclick="addComment('v2.0.0')">Küldés</button>
+                </div>
+                <div class="komment-lista" id="comments-v2.0.0">
+                    <div class="nincs-komment">Még nincsenek kommentek</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- itt bezárolag -->
+    <div class="frissites-bejegyzes">
+        <div class="frissites-datum">2025.02.10</div>
+        <div class="frissites-tartalom">
+            <h3>v1.1.1 - Hibajavítások</h3>
+            <p>• Javítottuk a navigációs problémákat</p>
+            <p>• Stabilizáltuk a teljesítményt</p>
+            <p>• Kis hibák javítva</p>
+            <div class="komment-szekcio">
+                <div class="komment-forma">
+                    <textarea class="komment-mezo" placeholder="Írj egy kommentet..." data-post-id="v1.1.1"></textarea>
+                    <button class="komment-gomb" onclick="addComment('v1.1.1')">Küldés</button>
+                </div>
+                <div class="komment-lista" id="comments-v1.1.1">
+                    <div class="nincs-komment">Még nincsenek kommentek</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="frissites-bejegyzes">
+        <div class="frissites-datum">2025.02.05</div>
+        <div class="frissites-tartalom">
+            <h3>v1.1.0 - Új funkciók</h3>
+            <p>• Hozzáadtuk a sötét módot</p>
+            <p>• Fejlesztettük a reszponzivitást</p>
+            <p>• Új beállítások</p>
+            <div class="komment-szekcio">
+                <div class="komment-forma">
+                    <textarea class="komment-mezo" placeholder="Írj egy kommentet..." data-post-id="v1.1.0"></textarea>
+                    <button class="komment-gomb" onclick="addComment('v1.1.0')">Küldés</button>
+                </div>
+                <div class="komment-lista" id="comments-v1.1.0">
+                    <div class="nincs-komment">Még nincsenek kommentek</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="frissites-bejegyzes">
+        <div class="frissites-datum">2025.02.01</div>
+        <div class="frissites-tartalom">
+            <h3>v1.0.3 - Teljesítmények</h3>
+            <p>• Alap teljesítmények</p>
+            <p>• Reszponzív kialakítás</p>
+            <p>• Navigációs rendszer</p>
+            <div class="komment-szekcio">
+                <div class="komment-forma">
+                    <textarea class="komment-mezo" placeholder="Írj egy kommentet..." data-post-id="v1.0.3"></textarea>
+                    <button class="komment-gomb" onclick="addComment('v1.0.3')">Küldés</button>
+                </div>
+                <div class="komment-lista" id="comments-v1.0.3">
+                    <div class="nincs-komment">Még nincsenek kommentek</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="frissites-bejegyzes">
+        <div class="frissites-datum">2025.01.20</div>
+        <div class="frissites-tartalom">
+            <h3>v1.0.2 - Design frissítés</h3>
+            <p>• Javítottuk a dizájnt</p>
+            <p>• Jobb elrendezés</p>
+            <p>• Új színséma</p>
+            <div class="komment-szekcio">
+                <div class="komment-forma">
+                    <textarea class="komment-mezo" placeholder="Írj egy kommentet." data-post-id="v1.0.2"></textarea>
+                    <button class="komment-gomb" onclick="addComment('v1.0.2')">Küldés</button>
+                </div>
+                <div class="komment-lista" id="comments-v1.0.2">
+                    <div class="nincs-komment">Még nincsenek kommentek</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="frissites-bejegyzes">
+        <div class="frissites-datum">2025.01.15</div>
+        <div class="frissites-tartalom">
+            <h3>v1.0.1 - Reszponzív frissítés</h3>
+            <p>• Reszponzív design</p>
+            <p>• Mobilbarát optimalizáltuk</p>
+            <p>• Navigáció javítva</p>
+            <div class="komment-szekcio">
+                <div class="komment-forma">
+                    <textarea class="komment-mezo" placeholder="Írj egy kommentet..." data-post-id="v1.0.1"></textarea>
+                    <button class="komment-gomb" onclick="addComment('v1.0.1')">Küldés</button>
+                </div>
+                <div class="komment-lista" id="comments-v1.0.1">
+                    <div class="nincs-komment">Még nincsenek kommentek</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="frissites-bejegyzes">
+        <div class="frissites-datum">2025.01.10</div>
+        <div class="frissites-tartalom">
+            <h3>v1.0.0 - Kezdeti kiadás</h3>
+            <p>• OntroSYS elindítása és alapvető funkciók implementálása</p>
+            <p>• Modern, reszponzív webes felület létrehozása</p>
+            <p>• Felhasználói regisztrációs és bejelentkezési rendszerek</p>
+            <p>• Navigációs menü és alapoldal dizájn</p>
+            <p>• Letöltési lehetőség és installer készítés</p>
+            <div class="komment-szekcio">
+                <div class="komment-forma">
+                    <textarea class="komment-mezo" placeholder="Írj egy kommentet..." data-post-id="v1.0.0"></textarea>
+                    <button class="komment-gomb" onclick="addComment('v1.0.0')">Küldés</button>
+                </div>
+                <div class="komment-lista" id="comments-v1.0.0">
+                    <div class="nincs-komment">Még nincsenek kommentek</div>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+      
+    </div>
+  </main>
+</div>
+</body>
+<script>
+function toggleMobileMenu() {
+    const navCenter = document.querySelector('.nav-center');
+    const navRight = document.querySelector('.nav-right');
+    const menuToggle = document.querySelector('.mobile-menu-toggle i');
+    
+    navCenter.classList.toggle('active');
+    navRight.classList.toggle('active');
+    
+    if (navCenter.classList.contains('active')) {
+        menuToggle.classList.remove('bx-menu');
+        menuToggle.classList.add('bx-x');
+    } else {
+        menuToggle.classList.remove('bx-x');
+        menuToggle.classList.add('bx-menu');
+    }
+}
+
+function toggleProfilMenu() {
+    const profilMenu = document.querySelector('.profil-menu');
+    profilMenu.classList.toggle('active');
+}
+
+document.addEventListener('click', function(event) {
+    const nav = document.querySelector('.felsocucc');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navCenter = document.querySelector('.nav-center');
+    const navRight = document.querySelector('.nav-right');
+    const profilContainer = document.querySelector('.profil-container');
+    const profilMenu = document.querySelector('.profil-menu');
+    
+    if (!nav.contains(event.target) && (navCenter.classList.contains('active') || navRight.classList.contains('active'))) {
+        navCenter.classList.remove('active');
+        navRight.classList.remove('active');
+        const menuIcon = document.querySelector('.mobile-menu-toggle i');
+        menuIcon.classList.remove('bx-x');
+        menuIcon.classList.add('bx-menu');
+    }
+    
+    if (!profilContainer.contains(event.target) && profilMenu.classList.contains('active')) {
+        profilMenu.classList.remove('active');
+    }
+});
+
+window.addEventListener('resize', function() {
+    const navCenter = document.querySelector('.nav-center');
+    const navRight = document.querySelector('.nav-right');
+    const menuIcon = document.querySelector('.mobile-menu-toggle i');
+    
+    if (window.innerWidth > 768) {
+        navCenter.classList.remove('active');
+        navRight.classList.remove('active');
+        menuIcon.classList.remove('bx-x');
+        menuIcon.classList.add('bx-menu');
+    }
+});
+
+async function addComment(postId) {
+    const textarea = document.querySelector(`[data-post-id="${postId}"]`);
+    const commentText = textarea.value.trim();
+
+    if (!commentText) {
+        alert("Írj valamit a kommentbe!");
+        return;
+    }
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+        alert("A kommenteléshez be kell jelentkezned!");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("action", "add_comment");
+    formData.append("post_id", postId);
+    formData.append("comment_text", commentText);
+    formData.append("user_id", user.id);
+    formData.append("username", user.username);
+
+    try {
+        const response = await fetch("../komment.php", {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            textarea.value = "";
+            loadComments(postId);
+        } else {
+            alert(result.message);
+        }
+    } catch (error) {
+        console.error("Hiba a komment küldésekor:", error);
+        alert("Hiba történt a komment hozzáadása közben.");
+    }
+}
+
+async function loadComments(postId) {
+    const formData = new FormData();
+    formData.append("action", "get_comments");
+    formData.append("post_id", postId);
+
+    try {
+        const response = await fetch("../komment.php", {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            displayComments(postId, result.comments);
+        } else {
+            console.error(result.message);
+        }
+    } catch (error) {
+        console.error("Hiba a kommentek betöltésekor:", error);
+    }
+}
+
+function displayComments(postId, comments) {
+    const container = document.getElementById(`comments-${postId}`);
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!comments || comments.length === 0) {
+        container.innerHTML = '<div class="nincs-komment">Még nincsenek kommentek</div>';
+        return;
+    }
+
+    let html = "";
+    comments.forEach(comment => {
+        const date = new Date(comment.timestamp).toLocaleString("hu-HU");
+
+        html += `
+            <div class="komment">
+                <div class="komment-fejlec">
+                    <span class="komment-szerzo">${comment.author}</span>
+                    <span class="komment-ido">${date}</span>
+                </div>
+                <div class="komment-szoveg">${comment.text}</div>
+                ${
+                    user && user.id == comment.user_id
+                    ? `<button class="komment-torles" onclick="deleteComment(${comment.id}, '${postId}')">Törlés</button>`
+                    : ""
+                }
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+async function deleteComment(commentId, postId) {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) return alert("Be kell jelentkezned!");
+
+    const formData = new FormData();
+    formData.append("action", "delete_comment");
+    formData.append("comment_id", commentId);
+    formData.append("user_id", user.id);
+
+    const response = await fetch("../komment.php", {
+        method: "POST",
+        body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        loadComments(postId);
+    } else {
+        alert(result.message);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const postIds = ["v2.0.0", "v1.1.1", "v1.1.0", "v1.0.3", "v1.0.2", "v1.0.1", "v1.0.0"];
+    postIds.forEach(postId => loadComments(postId));
+
+    document.querySelectorAll(".komment-mezo").forEach(textarea => {
+        textarea.addEventListener("keydown", function(e) {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                addComment(this.dataset.postId);
+            }
+        });
+    });
+});
+
+function loadUserData() {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+        const user = JSON.parse(userData);
+        
+       
+        const registerLink = document.getElementById('registerLink');
+        const loginLink = document.getElementById('loginLink');
+        const logoutLink = document.getElementById('logoutLink');
+        
+        if (registerLink) registerLink.style.display = 'none';
+        if (loginLink) loginLink.style.display = 'none';
+        if (logoutLink) logoutLink.style.display = 'block';
+    } else {
+      
+        const registerLink = document.getElementById('registerLink');
+        const loginLink = document.getElementById('loginLink');
+        const logoutLink = document.getElementById('logoutLink');
+        
+        if (registerLink) registerLink.style.display = 'block';
+        if (loginLink) loginLink.style.display = 'block';
+        if (logoutLink) logoutLink.style.display = 'none';
+    }
+}
+
+function applyTheme() {
+    const savedTheme = localStorage.getItem("theme") || "auto";
+    if (savedTheme === "dark") {
+        document.body.classList.add("sotet-mod");
+    }
+}
+
+function toggleTheme() {
+    const savedTheme = localStorage.getItem("theme") || "auto";
+    
+    if (savedTheme === "dark") {
+        document.body.classList.remove("sotet-mod");
+        localStorage.setItem("theme", "light");
+    } else {
+        document.body.classList.add("sotet-mod");
+        localStorage.setItem("theme", "dark");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    applyTheme();
+    loadUserData();
+    
+  
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.shiftKey && e.key === 'T') {
+            e.preventDefault();
+            toggleTheme();
+        }
+    });
+});
+</script>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bejelentkezés - OntroSYS">
+    <title>Bejelentkezés - OntroSYS</title>
+    <link rel="stylesheet" href="../css/css-optimized.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+      .nav-link {
+        font-size: 0.9rem ;
+        padding: 10px 16px ;
+      }
+    </style>
+</head>
+<body>
+    <div class="blur-background"></div>
+    
+    <nav class="felsocucc">
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <i class='bx bx-menu'></i>
+    </button>
+    <div class="nav-center">
+        <a href="Fooldal.html" class="nav-link">Főoldal</a>
+        <a href="Frissitések.html" class="nav-link">Frissítések</a>
+        
+    </div>
+    <div class="nav-right">
+        <div class="profil-container">
+            <div class="profil-kep" onclick="toggleProfilMenu()">
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="profil-menu" id="profilMenu">
+                <a href="Profil.html" class="profil-menu-item">
+                    <i class='bx bx-user-circle'></i>
+                    Profil
+                </a>
+                <a href="Beallitas.html" class="profil-menu-item">
+                    <i class='bx bx-cog'></i>
+                    Beállítások
+                </a>
+                <a href="regisztracio1.html" class="profil-menu-item" id="registerLink">
+                    <i class='bx bx-user-plus'></i>
+                    Regisztráció
+                </a>
+                <a href="web.html" class="profil-menu-item" id="loginLink">
+                    <i class='bx bx-log-in'></i>
+                    Bejelentkezés
+                </a>
+                <a href="rolunk.html" class="profil-menu-item">
+                    <i class='bx bx-info-circle'></i>
+                    Rólunk
+                </a>
+                <a href="logout.html" class="profil-menu-item" id="logoutLink">
+                    <i class='bx bx-log-out'></i>
+                    Kijelentkezés
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <main class="form-container">
+        <form id="loginForm" class="auth-form">
+        
+            
+            <div class="form-group">
+                <label for="username" class="form-label">Felhasználónév</label>
+                <div class="input-wrapper">
+                    <i class='bx bxs-user input-icon'></i>
+                    <input type="text" id="username" name="username" class="form-input" required placeholder="Add meg a felhasználónevet">
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="password" class="form-label">Jelszó</label>
+                <div class="input-wrapper">
+                    <i class='bx bx-lock input-icon'></i>
+                    <input type="password" id="password" name="password" class="form-input" required placeholder="Add meg a jelszót">
+                </div>
+                <button type="submit" class="submit-btn inline">Bejelentkezés</button>
+            </div>
+            
+            <div class="form-footer">
+                <button type="button" class="secondary-btn" onclick="window.location.href='regisztracio1.html';">
+                    Még nincs fiókom? Regisztráció
+                </button>
+            </div>
+        </form>
+    </main>
+
+<script>
+function toggleMobileMenu() {
+    const navCenter = document.querySelector('.nav-center');
+    const navRight = document.querySelector('.nav-right');
+    const menuToggle = document.querySelector('.mobile-menu-toggle i');
+    
+    navCenter.classList.toggle('active');
+    navRight.classList.toggle('active');
+    
+
+    if (navCenter.classList.contains('active')) {
+        menuToggle.classList.remove('bx-menu');
+        menuToggle.classList.add('bx-x');
+    } else {
+        menuToggle.classList.remove('bx-x');
+        menuToggle.classList.add('bx-menu');
+    }
+}
+
+function toggleProfilMenu() {
+    const profilMenu = document.querySelector('.profil-menu');
+    profilMenu.classList.toggle('active');
+}
+
+document.addEventListener('click', function(event) {
+    const nav = document.querySelector('.felsocucc');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navCenter = document.querySelector('.nav-center');
+    const navRight = document.querySelector('.nav-right');
+    const profilContainer = document.querySelector('.profil-container');
+    const profilMenu = document.querySelector('.profil-menu');
+    
+ 
+    if (!nav.contains(event.target) && (navCenter.classList.contains('active') || navRight.classList.contains('active'))) {
+        navCenter.classList.remove('active');
+        navRight.classList.remove('active');
+        const menuIcon = document.querySelector('.mobile-menu-toggle i');
+        menuIcon.classList.remove('bx-x');
+        menuIcon.classList.add('bx-menu');
+    }
+    
+
+    if (!profilContainer.contains(event.target) && profilMenu.classList.contains('active')) {
+        profilMenu.classList.remove('active');
+    }
+});
+
+window.addEventListener('resize', function() {
+    const navCenter = document.querySelector('.nav-center');
+    const navRight = document.querySelector('.nav-right');
+    const menuIcon = document.querySelector('.mobile-menu-toggle i');
+    
+    if (window.innerWidth > 768) {
+        navCenter.classList.remove('active');
+        navRight.classList.remove('active');
+        menuIcon.classList.remove('bx-x');
+        menuIcon.classList.add('bx-menu');
+    }
+});
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (!username || !password) {
+        alert('A felhasználónév és jelszó megadása kötelező!');
+        return;
+    }
+
+    try {
+        const response = await fetch('../bejelentkezes.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `username=${encodeURIComponent(username)}&passwd=${encodeURIComponent(password)}`
+        });
+
+        if (!response.ok) {
+            alert('Hiba történt a bejelentkezés során.');
+            return;
+        }
+
+        const result = await response.json();
+
+        if (!result.success) {
+            alert(result.message || 'Hibás bejelentkezés!');
+            return;
+        }
+
+     
+        localStorage.setItem('user', JSON.stringify(result.user));
+
+        alert('Sikeres bejelentkezés!');
+        window.location.href = 'Fooldal.html';
+
+    } catch (error) {
+        console.error('Fetch hiba:', error);
+        alert('Hiba történt a bejelentkezés során.');
+    }
+});
+
+function applyTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'auto';
+    
+    if (savedTheme === 'dark') {
+        document.body.classList.add('inverted-theme');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', applyTheme);
+
+function loadUserData() {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+        const user = JSON.parse(userData);
+        
+     
+        const registerLink = document.getElementById('registerLink');
+        const loginLink = document.getElementById('loginLink');
+        const logoutLink = document.getElementById('logoutLink');
+        
+        if (registerLink) registerLink.style.display = 'none';
+        if (loginLink) loginLink.style.display = 'none';
+        if (logoutLink) logoutLink.style.display = 'block';
+    } else {
+       
+        const registerLink = document.getElementById('registerLink');
+        const loginLink = document.getElementById('loginLink');
+        const logoutLink = document.getElementById('logoutLink');
+        
+        if (registerLink) registerLink.style.display = 'block';
+        if (loginLink) loginLink.style.display = 'none';
+        if (logoutLink) logoutLink.style.display = 'none';
+    }
+}
+document.addEventListener("DOMContentLoaded", function() {
+    loadUserData();
+});
+</script>
+
+<style>
+.inverted-theme {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.inverted-theme img,
+.inverted-theme video,
+.inverted-theme canvas,
+.inverted-theme iframe {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.inverted-theme .blur-background {
+    filter: invert(1) hue-rotate(180deg) blur(5px);
+}
+
+.inverted-theme .felsocucc {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.inverted-theme .nav-link {
+    color: #333 !important;
+}
+
+.inverted-theme .nav-link:hover,
+.inverted-theme .nav-link.nav-active {
+    color: white !important;
+}
+
+.inverted-theme .mobile-menu-toggle {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    color: white !important;
+}
+
+.inverted-theme .profil-kep {
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+}
+
+.inverted-theme .profil-menu {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.inverted-theme .profil-menu-item {
+    color: #333 !important;
+}
+
+.inverted-theme .profil-menu-item:hover {
+    background: rgba(102, 126, 234, 0.1) !important;
+    color: #667eea !important;
+}
+</style>
+</body>
+</html>
