@@ -1,6 +1,6 @@
 ## Élő elérés
 A weboldal az alábbi címen érhető el:
-**[akos0328.webredirect.org](http://webredirect.org)**
+**[akos0328.webredirect.org](http://akos0328.webredirect.org)**
 
 ## Technológiai háttér
 A weboldal az alábbi technológiák felhasználásával készült:
